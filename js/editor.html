@@ -1,0 +1,46 @@
+<div class="sashimi_editor__branding" style="margin-bottom: 20px;">
+	
+	<div><h2 style="margin: 0;">sashimi</h2><b><i>by Private Suite Media</i></b></div>
+	
+</div>
+
+<div class="sashimi_editor">
+	
+	<div class="panel controls">
+		
+		<div class="split">
+			
+			<div>
+				
+				<p class="sub" style="margin-top: 0;">Document</p>
+				
+				<button class="sashimi_editor__switch_mode">Switch Mode</button>
+				<button class="sashimi_editor__strip sashimi_editor__text_options">Strip Styles</button>
+				
+			</div>
+			
+			<div class="sashimi_editor__text_options">
+				
+				<p class="sub" style="margin-top: 0;">Text</p>
+				
+				<button class="sashimi_editor__bold" style="opacity: 0.5;">b</button>
+				<button class="sashimi_editor__italic" style="opacity: 0.5;"><i>i</i></button>
+				<button class="sashimi_editor__underline" style="opacity: 0.5;"><u>u</u></button>
+				
+				<input class="sashimi_editor__font_size" type="text" placeholder="Size" style="width: 70px;"> <!--oninput="const v = this.value; if (('' + parseInt(v)) !== v || parseInt(v) > 128) this.value = v.slice(0, -1);"-->
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="textarea sashimi_editor__textbox" contenteditable>
+		
+		<div>Write something here!</div>
+		
+	</div>
+	
+	<textarea class="textarea sashimi_editor__code_textbox" style="display: none;" contenteditable></textarea>
+	
+</div>

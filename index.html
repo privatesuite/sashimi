@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sashimi Demo</title>
+
+	<link rel="stylesheet" href="/css/editor.css">
+	<link rel="stylesheet" href="https://raw.githack.com/privatesuite/psm.css/master/css/app.css">
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.min.js"></script> -->
+
+	<script src="js/sashimi.js"></script>
+
+</head>
+<body>
+	
+	<div class="app">
+
+		<div class="split">
+
+			<div id="editor" class="section" style="width: 49%;"></div>
+			<div id="editor2" class="section" style="width: 49%;"></div>
+
+		</div>
+		
+	</div>
+
+	<script>
+
+		(async () => {
+
+			await SashimiReady;
+
+			Sashimi.createEditorAt("#editor");
+			Sashimi.createEditorAt("#editor2");
+
+		})();
+
+	</script>
+
+</body>
+</html>

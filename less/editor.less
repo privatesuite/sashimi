@@ -1,0 +1,68 @@
+.sashimi_editor {
+
+	position: relative;
+
+	padding-top: 120px;
+
+	.panel {
+
+		background-color: white;
+	
+	}
+
+	.controls {
+
+		position: absolute;
+
+		top: 0;
+
+		width: 100%;
+
+		&>.split>* {
+
+			width: 49%;
+
+		}
+
+	}
+
+	.sashimi_editor__text_options {
+
+		&>button {transition: none;}
+
+	}
+
+	.textarea {
+
+		margin-bottom: 20px;
+
+		min-height: 400px;
+
+		color: var(--body__color);
+		font-size: 13pt;
+		font-weight: normal;
+		font-family: var(--body__font);	
+
+		a {
+
+			color: #1e00ff;
+
+		}
+
+	}
+
+	.sashimi_editor__code_textbox {
+
+		font-family: "Consolas", monospace;
+
+		width: 100%;
+
+		div {
+
+			font-size: 13pt;
+
+		}
+
+	}
+
+}

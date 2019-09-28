@@ -1,0 +1,36 @@
+.sashimi_editor {
+  position: relative;
+  padding-top: 120px;
+}
+.sashimi_editor .panel {
+  background-color: white;
+}
+.sashimi_editor .controls {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.sashimi_editor .controls > .split > * {
+  width: 49%;
+}
+.sashimi_editor .sashimi_editor__text_options > button {
+  transition: none;
+}
+.sashimi_editor .textarea {
+  margin-bottom: 20px;
+  min-height: 400px;
+  color: var(--body__color);
+  font-size: 13pt;
+  font-weight: normal;
+  font-family: var(--body__font);
+}
+.sashimi_editor .textarea a {
+  color: #1e00ff;
+}
+.sashimi_editor .sashimi_editor__code_textbox {
+  font-family: "Consolas", monospace;
+  width: 100%;
+}
+.sashimi_editor .sashimi_editor__code_textbox div {
+  font-size: 13pt;
+}
