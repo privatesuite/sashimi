@@ -21,7 +21,14 @@
 		<div class="split">
 
 			<div id="editor" class="section" style="width: 49%;"></div>
-			<div id="editor2" class="section" style="width: 49%;"></div>
+			<div class="section" style="width: 49%;">
+			
+				<h1>Control Panel</h1>
+
+				<button onclick="console.log(Sashimi.extractHTML('#editor'))">Extract HTML to Console</button>
+				<button onclick="console.log(Sashimi.extractText('#editor'))">Extract text to Console</button>
+
+			</div>
 
 		</div>
 		
@@ -34,7 +41,6 @@
 			await SashimiReady;
 
 			Sashimi.createEditorAt("#editor");
-			Sashimi.createEditorAt("#editor2");
 
 		})();
 

@@ -194,6 +194,14 @@ const SashimiReady = new Promise(r => __spro = r);
 
 	const editorSource = await (await fetch(`${__ssrc}/../editor.html`)).text();
 
+	function stripHtml (html) {
+
+		const tmp = document.createElement("DIV");
+		tmp.innerHTML = html;
+		return tmp.textContent || tmp.innerText || "";
+
+	}
+
 	window.Sashimi = {
 
 		createEditorAt (selector) {
@@ -203,6 +211,18 @@ const SashimiReady = new Promise(r => __spro = r);
 
 			base.innerHTML = editorSource;
 
+		},
+
+		extractHTML (selector) {
+
+			return document.querySelector(selector).querySelector(".sashimi_editor__textbox").innerHTML.trim();
+
+		},
+
+		extractText (selector) {
+
+			return stripHtml(this.extractHTML(selector));
+			
 		}
 	
 	}
