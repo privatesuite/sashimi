@@ -2,8 +2,6 @@
 
 	position: relative;
 
-	padding-top: 120px;
-
 	.panel {
 
 		background-color: white;
@@ -12,9 +10,7 @@
 
 	.controls {
 
-		position: absolute;
-
-		top: 0;
+		margin-bottom: 20px;
 
 		width: 100%;
 
@@ -30,13 +26,25 @@
 
 		&>button {transition: none;}
 
+		.sashimi_editor__italic {
+
+			font-style: italic;
+
+		}
+
+		.sashimi_editor__underline {
+
+			text-decoration: underline;
+
+		}
+
 	}
 
 	.textarea {
 
 		margin-bottom: 20px;
 
-		min-height: 400px;
+		height: 400px;
 
 		color: var(--body__color);
 		font-size: 13pt;
@@ -48,6 +56,8 @@
 			color: #1e00ff;
 
 		}
+
+		overflow: auto;
 
 	}
 

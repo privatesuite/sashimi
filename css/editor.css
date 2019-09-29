@@ -1,13 +1,11 @@
 .sashimi_editor {
   position: relative;
-  padding-top: 120px;
 }
 .sashimi_editor .panel {
   background-color: white;
 }
 .sashimi_editor .controls {
-  position: absolute;
-  top: 0;
+  margin-bottom: 20px;
   width: 100%;
 }
 .sashimi_editor .controls > .split > * {
@@ -16,13 +14,20 @@
 .sashimi_editor .sashimi_editor__text_options > button {
   transition: none;
 }
+.sashimi_editor .sashimi_editor__text_options .sashimi_editor__italic {
+  font-style: italic;
+}
+.sashimi_editor .sashimi_editor__text_options .sashimi_editor__underline {
+  text-decoration: underline;
+}
 .sashimi_editor .textarea {
   margin-bottom: 20px;
-  min-height: 400px;
+  height: 400px;
   color: var(--body__color);
   font-size: 13pt;
   font-weight: normal;
   font-family: var(--body__font);
+  overflow: auto;
 }
 .sashimi_editor .textarea a {
   color: #1e00ff;
