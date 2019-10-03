@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		for (const prop of properties) findEditor(event.target).querySelector(`.sashimi_editor__${prop}`).style.opacity = isSelected(prop) ? 1 : 0.5;
 
-		findEditor(event.target).querySelector(".sashimi_editor__font_size").value = getFontSize() ? `${toPoint(getFontSize())}` : "";
+		if (event.target.closest(".sashimi_editor__textbox")) findEditor(event.target).querySelector(".sashimi_editor__font_size").value = getFontSize() ? `${toPoint(getFontSize())}` : "";
 
 	}
 
@@ -174,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (event.target.classList.contains("sashimi_editor__font_size")) {
 
-			console.log("A")
 			// document.execCommand("formatBlock", false, "<font-change>");			
 
 		}
@@ -210,6 +209,13 @@ const SashimiReady = new Promise(r => __spro = r);
 			const clone = base.cloneNode();
 
 			base.innerHTML = editorSource;
+
+		},
+
+		setHTML (selector, html) {
+
+			document.querySelector(selector).querySelector(".sashimi_editor__textbox").innerHTML = html;
+			document.querySelector(selector).querySelector(".sashimi_editor__code_textbox").value = html;
 
 		},
 
