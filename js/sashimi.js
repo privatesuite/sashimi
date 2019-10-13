@@ -59,6 +59,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 	}
 
+	function lowestElements (elements) {
+
+		const f = [];
+		for (const element of elements) {
+
+			if (element.children && element.children.length) f.push(...lowestElements([...element.children]));
+			else return [element];
+
+		}
+		return f;
+
+	}
+
 	function isSelected (attribute) {
 
 		function check (node, fn) {
@@ -67,16 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 				return fn(node);
 
-			} catch (e) {if (node.parentElement && node.parentElement.tagName !== "DIV") return fn(node.parentElement)}
+			} catch (e) {if (node.parentElement && node.parentElement.tagName !== "P") return fn(node.parentElement)}
 
 		}
 
 		const range = window.getSelection().getRangeAt(0);
-		const selected = range.startOffset === range.endOffset ? [range.startContainer] : getSelectedNodes();
+		let selected = range.startOffset === range.endOffset ? [range.startContainer] : getSelectedNodes();
+		selected = lowestElements(selected);
 
 		if (attribute === "bold") return selected.every(_ => check(_, __ => __.closest("b, strong")));
 		if (attribute === "italic") return selected.every(_ => check(_, __ => __.closest("i, *[fontStyle~=italic]")));
 		if (attribute === "underline") return selected.every(_ => check(_, __ => __.closest("u")));
+		if (attribute === "h1") return range.startContainer === range.endContainer && range.startContainer.nodeName === "H1";
 
 	}
 
@@ -105,9 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const properties = ["bold", "italic", "underline"];
 
+		[...findTextbox(event.target).querySelectorAll("span")].map(_ => _.replaceWith(document.createTextNode(_.innerText)));
+
 		for (const prop of properties) findEditor(event.target).querySelector(`.sashimi_editor__${prop}`).style.opacity = isSelected(prop) ? 1 : 0.5;
 
-		if (event.target.closest(".sashimi_editor__textbox")) findEditor(event.target).querySelector(".sashimi_editor__font_size").value = getFontSize() ? `${toPoint(getFontSize())}` : "";
+		// if (event.target.closest(".sashimi_editor__textbox")) findEditor(event.target).querySelector(".sashimi_editor__font_size").value = getFontSize() ? `${toPoint(getFontSize())}` : "";
 
 	}
 
@@ -115,11 +132,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (!event.target) return;
 
+		if (event.target.classList.contains("sashimi_editor__p")) document.execCommand("formatBlock", true, "p");
+		if (event.target.classList.contains("sashimi_editor__h1")) document.execCommand("formatBlock", true, "h1");
+		if (event.target.classList.contains("sashimi_editor__h2")) document.execCommand("formatBlock", true, "h2");
+		if (event.target.classList.contains("sashimi_editor__h3")) document.execCommand("formatBlock", true, "h3");
+
 		if (event.target.classList.contains("sashimi_editor__bold")) document.execCommand("bold", false);
 		if (event.target.classList.contains("sashimi_editor__italic")) document.execCommand("italic", false);
 		if (event.target.classList.contains("sashimi_editor__underline")) document.execCommand("underline", false);
 
-		if (event.target.closest(".sashimi_editor__textbox, .sashimi_editor__text_options")) {
+		if (window.getSelection().focusNode && event.target.closest(".sashimi_editor__textbox, .sashimi_editor__text_options")) {
 	
 			refreshControls();
 			[...findEditor(event.target).querySelectorAll(".sashimi_editor__placeholder")].map(_ => _.remove());
@@ -168,17 +190,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	});
 
+	document.addEventListener("keydown", event => {
+
+		if (!event.target) return;
+
+		if (event.target.closest(".sashimi_editor__textbox") && event.key.toLowerCase() === "backspace" && !event.target.closest(".sashimi_editor__textbox").innerText.trim()) {
+
+			event.preventDefault();
+			return false;
+
+		}
+
+	});
+
 	document.addEventListener("keyup", event => {
 
 		if (!event.target) return;
 
-		if (event.target.classList.contains("sashimi_editor__font_size")) {
-
-			// document.execCommand("formatBlock", false, "<font-change>");			
+		if (event.target.closest(".sashimi_editor__textbox")) {
+			
+			refreshControls();
 
 		}
-
-		if (event.target.closest(".sashimi_editor__textbox")) refreshControls();
 
 	});
 
@@ -206,7 +239,9 @@ const SashimiReady = new Promise(r => __spro = r);
 		createEditorAt (selector) {
 	
 			const base = document.querySelector(selector);
-			const clone = base.cloneNode();
+			
+			document.execCommand("styleWithCSS", true, false)
+			document.execCommand("defaultParagraphSeparator", false, "p");
 
 			base.innerHTML = editorSource;
 

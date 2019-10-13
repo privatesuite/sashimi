@@ -11,7 +11,8 @@
 .sashimi_editor .controls > .split > * {
   width: 49%;
 }
-.sashimi_editor .sashimi_editor__text_options > button {
+.sashimi_editor .sashimi_editor__text_options .sashimi_editor__toggle {
+  opacity: 0.5;
   transition: none;
 }
 .sashimi_editor .sashimi_editor__text_options .sashimi_editor__italic {
@@ -19,6 +20,10 @@
 }
 .sashimi_editor .sashimi_editor__text_options .sashimi_editor__underline {
   text-decoration: underline;
+}
+.sashimi_editor .sashimi_editor__text_options .sashimi_editor__block_options {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 .sashimi_editor .textarea {
   margin-bottom: 20px;
@@ -31,6 +36,14 @@
 }
 .sashimi_editor .textarea a {
   color: #1e00ff;
+}
+.sashimi_editor .sashimi_editor__textbox {
+  line-height: 1;
+}
+.sashimi_editor .sashimi_editor__textbox p,
+.sashimi_editor .sashimi_editor__textbox li {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .sashimi_editor .sashimi_editor__code_textbox {
   font-family: "Consolas", monospace;

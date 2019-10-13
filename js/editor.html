@@ -22,12 +22,19 @@
 			<div class="sashimi_editor__text_options">
 				
 				<p class="sub" style="margin-top: 0;">Text</p>
-				
-				<button class="sashimi_editor__bold" style="opacity: 0.5;">b</button>
-				<button class="sashimi_editor__italic" style="opacity: 0.5;">i</button>
-				<button class="sashimi_editor__underline" style="opacity: 0.5;">u</button>
-				
-				<input class="sashimi_editor__font_size" type="text" placeholder="Size" style="width: 70px;"> <!--oninput="const v = this.value; if (('' + parseInt(v)) !== v || parseInt(v) > 128) this.value = v.slice(0, -1);"-->
+
+				<div class="sashimi_editor__block_options">
+
+					<button class="sashimi_editor__toggle sashimi_editor__p">p</button>
+					<button class="sashimi_editor__toggle sashimi_editor__h1">h1</button>
+					<button class="sashimi_editor__toggle sashimi_editor__h2">h2</button>
+					<button class="sashimi_editor__toggle sashimi_editor__h3">h3</button>
+
+				</div>
+
+				<button class="sashimi_editor__toggle sashimi_editor__bold">b</button>
+				<button class="sashimi_editor__toggle sashimi_editor__italic">i</button>
+				<button class="sashimi_editor__toggle sashimi_editor__underline">u</button>
 				
 			</div>
 			
@@ -37,7 +44,7 @@
 	
 	<div class="textarea sashimi_editor__textbox" contenteditable>
 		
-		<div>Write something here!</div>
+		<p>Let your mind fill this blank canvas with meaning...</p>
 		
 	</div>
 	

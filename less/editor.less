@@ -24,7 +24,12 @@
 
 	.sashimi_editor__text_options {
 
-		&>button {transition: none;}
+		.sashimi_editor__toggle {
+		
+			opacity: 0.5;
+			transition: none;
+		
+		}
 
 		.sashimi_editor__italic {
 
@@ -35,6 +40,13 @@
 		.sashimi_editor__underline {
 
 			text-decoration: underline;
+
+		}
+
+		.sashimi_editor__block_options {
+
+			margin-right: 10px;
+			margin-bottom: 10px;
 
 		}
 
@@ -58,6 +70,19 @@
 		}
 
 		overflow: auto;
+
+	}
+
+	.sashimi_editor__textbox {
+
+		line-height: 1;
+
+		p, li {
+
+			margin-top: 15px;
+			margin-bottom: 15px;
+
+		}
 
 	}
 
