@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (event.target.classList.contains("sashimi_editor__underline")) document.execCommand("underline", false);
 		if (event.target.classList.contains("sashimi_editor__anchor")) {
 			
-			const link = prompt("Where would you like to link to? (Leave blank to cancel or remove an already existing link)");
+			const link = prompt("Enter URL:");
 
 			if (link.trim()) document.execCommand("createLink", false, link);
 			else document.execCommand("unlink", false);
@@ -170,9 +170,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		if (event.target.classList.contains("sashimi_editor__image")) {
 			
-			const link = prompt("Please enter the URL of image you'd like to add:");
+			let link = prompt("Please enter the URL of image you'd like to add:");
 
-			if (link.trim()) document.execCommand("insertImage", false, link);
+			if (link.trim()) {
+			
+				if (!link.startsWith("http")) link = `${__sopt.imageRoot}${link}`;
+
+				document.execCommand("insertImage", false, link);
+
+			}
 
 		}
 
@@ -262,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let __spro = () => {};
 const __ssrc = document.currentScript.src;
+let __sopt = {imageRoot: ""};
 
 const SashimiReady = new Promise(r => __spro = r);
 
@@ -307,6 +314,12 @@ const SashimiReady = new Promise(r => __spro = r);
 
 			return stripHtml(this.extractHTML(selector));
 			
+		},
+
+		setImageRoot (root) {
+
+			__sopt.imageRoot = root;
+
 		}
 	
 	}
