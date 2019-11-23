@@ -160,6 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (event.target.classList.contains("sashimi_editor__bold")) document.execCommand("bold", false);
 		if (event.target.classList.contains("sashimi_editor__italic")) document.execCommand("italic", false);
 		if (event.target.classList.contains("sashimi_editor__underline")) document.execCommand("underline", false);
+		if (event.target.classList.contains("sashimi_editor__anchor")) {
+			
+			const link = prompt("Where would you like to link to? (Leave blank to cancel or remove an already existing link)");
+
+			if (link.trim()) document.execCommand("createLink", false, link);
+			else document.execCommand("unlink", false);
+
+		}
+		if (event.target.classList.contains("sashimi_editor__image")) {
+			
+			const link = prompt("Please enter the URL of image you'd like to add:");
+
+			if (link.trim()) document.execCommand("insertImage", false, link);
+
+		}
 
 		if (window.getSelection().focusNode && event.target.closest(".sashimi_editor__textbox, .sashimi_editor__text_options")) {
 	
