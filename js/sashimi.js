@@ -8,13 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		for (const child of root.children) {
 
-			for (const attr of child.getAttributeNames()) {
+			if (!child.classList.contains("sashimi_editor__protected")) {
+		
+				for (const attr of child.getAttributeNames()) {
 
-				if (["href", "target", "type", "method", "action", "src"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
+					if (["href", "target", "type", "method", "action", "src", "style"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
+				
+				}
+
+				standardize(child);
 
 			}
-
-			standardize(child);
 
 		}
 
@@ -179,6 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				document.execCommand("insertImage", false, link);
 
 			}
+
+		}
+		if (event.target.classList.contains("sashimi_editor__create_half_split")) {
+			
+			document.execCommand("insertHTML", false, `<div class="split sashimi_editor__protected"><div style="width: 50%;"><p>Left</p></div><div style="width: 50%;"><p>Right</p></div></div><p>Under the split</p>`);
 
 		}
 
