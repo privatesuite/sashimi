@@ -2,6 +2,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/**
 	 * 
+	 * @param {Element} root 
+	 */
+	function standardize (root) {
+
+		for (const child of root.children) {
+
+			for (const attr of child.getAttributeNames()) {
+
+				if (["href", "target", "type", "method", "action", "src"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
+
+			}
+
+			standardize(child);
+
+		}
+
+	}
+
+	/**
+	 * 
 	 * @param {Element} element 
 	 * 
 	 * @returns {Element}
@@ -198,6 +218,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			event.preventDefault();
 			return false;
+
+		} else if (event.target.closest(".sashimi_editor__textbox") && event.key.toLowerCase() === "v" && event.ctrlKey) {
+
+			setTimeout(() => {
+
+				standardize(event.target.closest(".sashimi_editor__textbox"));
+			
+			}, 1);
 
 		}
 
