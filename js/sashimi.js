@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 				for (const attr of child.getAttributeNames()) {
 
-					if (["href", "target", "type", "method", "action", "src", "style"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
+					if (["href", "target", "type", "method", "action", "src", "style", "class"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
 				
 				}
 
