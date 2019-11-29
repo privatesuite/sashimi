@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			if (!child.classList.contains("sashimi_editor__protected")) {
 		
+				child.style.fontSize = "";
+				child.style.fontFamily = "";
 				for (const attr of child.getAttributeNames()) {
 
 					if (["href", "target", "type", "method", "action", "src", "style", "class"].indexOf(attr.toLowerCase()) === -1) child.removeAttribute(attr);
