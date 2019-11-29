@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			if (!child.classList.contains("sashimi_editor__protected")) {
 		
+				child.style.color = "";
 				child.style.fontSize = "";
 				child.style.fontFamily = "";
 				for (const attr of child.getAttributeNames()) {
